@@ -1,0 +1,12 @@
+.login_in{
+    width: 550px;
+    height: 390px;
+    background-color: white;
+    border: 2px solid black;
+    padding: 10px;
+    border-radius: 30px;
+}
+.login_page{
+    height: 100vh;
+    background-color: #172154;
+}

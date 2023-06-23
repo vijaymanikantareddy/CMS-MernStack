@@ -1,0 +1,35 @@
+*{
+    /* background-color: #acdcdc; */
+    overflow: hidden;
+    text-align: center;
+}
+.login_button{
+    border-radius: 10%;
+    background-color: #b3b3b3;
+    width: 90px;
+    height: 40px;
+    margin: auto;
+    text-align: center;
+    border: none;
+}
+.emptyspace{
+    height: 400px;
+}
+
+.register_button{
+    border-radius: 10%;
+    background-color: #b3b3b3;
+    width: 90px;
+    height: 40px;
+    border: none;
+}
+#foot{
+  position: fixed;
+  bottom: 0;
+  left: 39%;
+  text-align: center;
+  font-size:1vw;
+  justify-content: center;
+}
+/* @media only screen and (max-width: 600px) */
+

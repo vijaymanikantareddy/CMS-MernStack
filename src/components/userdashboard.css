@@ -1,0 +1,28 @@
+.middle{
+    background-color: whitesmoke;
+}
+
+
+@media only screen and (max-width: 770px)
+{
+*{
+    overflow: scroll;
+}  
+}
+.gra{
+    margin-left: 5px;
+}
+
+/* .dashdisplay{ */
+    /* overflow: scroll; */
+/* } */
+
+ .dashdisplay{
+    height:100vh;
+    overflow:scroll;
+    overflow-x:hidden;
+} 
+.graph_card{
+    margin-bottom:100px;
+}
+
