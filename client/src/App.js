@@ -25,7 +25,6 @@ import Signup from './components/Signup';
 function App() {
   return (
     <>
-    
     <Routes>
                 <Route path="/" element={<Login/>}/>
                 <Route path='/usercomplaint_list' element={<UserComplaint_List/>}/>

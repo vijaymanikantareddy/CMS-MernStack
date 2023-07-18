@@ -1,38 +1,38 @@
-body{
+/* body{
 	background-color:#3e3e3b;
-	color:white;
+	color:white; */
 	/* overflow: scroll; */
-}
+/* } */
 
-nav{
+/* nav{ */
 	/* background-image: url('https://www.shutterstock.com/image-vector/pink-yellow-background-gradient-illustration-260nw-1130015222.jpg'); */
 	/* background-image: linear-gradient(#b44593, #ee7724, #D8363a,#dd3675); */
 	/* background: linear-gradient(to bottom, #ff0066 0%, #ffff66 100%); */
 	/* background: linear-gradient(to bottom, #669999 0%, #ffffcc 90%); */
-	background-color:orange;
+	/* background-color:orange; */
 	/* #172154; */
 	/* 763237; */
-	background-repeat: no-repeat;
+	/* background-repeat: no-repeat;
 	background-size: cover;
-	left:0;
+	left:0; */
 	/* background-color:rgb(241, 180, 27); */
 	/* border-radius:0 20 px 20 px 0; */
-	width: 100%;
-	padding-top: 100px;
+	/* width: 100%;
+	padding-top: 100px; */
 	/* border-top-right-radius: 10%; */
 	/* border-bottom-right-radius: 10%; */
-	height: 100vh;
-	border-right: 2px solid black;
+	/* height: 100vh;
+	border-right: 2px solid black; */
 	/* border:3px solid gray; */
-}
+/* }
 nav ul{
-	padding:25px;
+	padding:25px; */
 	/* display:flex; */
-	list-style:none;
+	/* list-style:none; */
 	/* flex-direction:column; */
 	/* gap:30px; */
 	/* flex-wrap:wrap; */
-}
+/* }
 nav ul li a{
 	text-decoration:none;
 	color:white;
@@ -59,4 +59,4 @@ li.active{
 		border-top-right-radius: 5%;
 	border-bottom-right-radius: 5%;
 	}
-}
+} */

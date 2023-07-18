@@ -1,12 +1,7 @@
 .App {
   text-align: center;
 }
-.row{
-  /* background: linear-gradient(to bottom, #669999 0%, #FFFFCC 100%); */
-  background-color:gray;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

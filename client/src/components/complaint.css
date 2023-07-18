@@ -1,4 +1,4 @@
-table{
+/* table{
     background-color: rgb(251, 254, 255);
     overflow-y: scroll;
 }
@@ -9,21 +9,21 @@ table td,th{
 .heading-data{
     margin-top: 50px;
 }
-.div_table{
+.div_table{ */
     /* background-image: url('https://www.shutterstock.com/image-vector/pink-yellow-background-gradient-illustration-260nw-1130015222.jpg');  */
 	/* background-image: linear-gradient(  #b44593, #ee7724, #D8363a,#dd3675); */
-    background: linear-gradient(to top, #669999 0%, #ffffcc 100%);
+    /* background: linear-gradient(to top, #669999 0%, #ffffcc 100%);
     background-repeat: no-repeat;
 	background-size: cover;
     height: 200px;
     padding: 50px;
     margin-top: 100px;
 }
-.outside{
+.outside{ */
     /* width:1000px;
     height: 700px; */
     /* background-color:linear-gradient(to top, #669999 0%, #FFFFCC 100%);; */
-    background-color: white;
+    /* background-color: white;
 
 }
 .form_here{
@@ -34,4 +34,4 @@ table td,th{
     height:600px;
     margin:50px;
     border-radius:6%; 
-}
+} */
