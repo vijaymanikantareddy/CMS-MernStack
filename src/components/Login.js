@@ -53,7 +53,8 @@ function Login() {
         <center>
         {/* <h1>
             <b>Central Management System</b>
-          </h1> */}
+          </h1> 
+          */}
           <div className="login_in" style={{marginTop:'200px', marginLeft:'100px', backgroundColor:'white'}}>
             <form className="form_login">
             <h3 style={{marginBottom:'50px',marginTop:'30px',color:'black'}}><u>Login Form</u></h3>
