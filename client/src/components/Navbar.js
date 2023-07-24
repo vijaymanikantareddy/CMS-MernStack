@@ -10,7 +10,7 @@ function Navbar(){
             <ul style={{marginTop:'-50px'}}>
             <li>
                     <img src={logo} width={'100px'} style={{marginLeft:'40px',marginBottom:'30px'}}/>
-                </li>
+            </li>
                 <li>
                     <h3><NavLink to="/dashboard">CMS</NavLink></h3>
                     <hr/>

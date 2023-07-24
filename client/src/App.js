@@ -19,6 +19,7 @@ import UserNavbar from './components/usernavbar';
 import UserRegistrationForm from './components/userregistration-form';
 import UserReport from './components/userrepo';
 import Signup from './components/Signup';
+import Navigation from './components/Navigation';
 // import ReportPage from './components/check';
 
 
@@ -26,21 +27,22 @@ function App() {
   return (
     <>
     <Routes>
-                <Route path="/" element={<Login/>}/>
-                <Route path='/usercomplaint_list' element={<UserComplaint_List/>}/>
-                <Route path='/usercomplaints_form' element={<UserComplaint_Form/>}/>
-                <Route path='/userdashboard' element={<UserDashBoard/>}/>
-                <Route path='/usernavbar' element={<UserNavbar/>}/>
-                <Route path='/userregistrationform' element={<UserRegistrationForm/>}/>
-                <Route path='/userreport' element={<UserReport/>}/>
-                <Route path="/register" element={<Register/>}/>
-                <Route path="/dashboard" element={<DashBoard/>}/>
-                <Route path="/complaint_form" element={<Complaint_Form/>}/>
-                <Route path="/complaint_List" element={<Complaint_List/>}/>
-                <Route path="/work_assign" element={<Work_assign/>}/>
-                <Route path="/work_assign_list" element={<Work_assign_list/>}/>
-                <Route path="/report" element={<Reports/>}/>
-                <Route path="/signup" element={<Signup/>}/>
+        <Route path="/" element={<Login/>}/>
+        <Route path='/usercomplaint_list' element={<UserComplaint_List/>}/>
+        <Route path='/usercomplaints_form' element={<UserComplaint_Form/>}/>
+        <Route path='/userdashboard' element={<UserDashBoard/>}/>
+        <Route path='/usernavbar' element={<UserNavbar/>}/>
+        <Route path='/userregistrationform' element={<UserRegistrationForm/>}/>
+        <Route path='/userreport' element={<UserReport/>}/>
+        <Route path="/register" element={<Register/>}/>
+        <Route path="/dashboard" element={<DashBoard/>}/>
+        <Route path="/complaint_form" element={<Complaint_Form/>}/>
+        <Route path="/complaint_List" element={<Complaint_List/>}/>
+        <Route path="/work_assign" element={<Work_assign/>}/>
+        <Route path="/work_assign_list" element={<Work_assign_list/>}/>
+        <Route path="/report" element={<Reports/>}/>
+        <Route path="/signup" element={<Signup/>}/>
+        <Route path="/navi" element={<Navigation/>}/>
                 {/* <Route path='/check' element={<ReportPage/>}/> */}
      </Routes>
     {/* <DashBoard/> */}
