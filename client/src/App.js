@@ -3,7 +3,7 @@ import './App.css';
 import Home from './components/home_page';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
-import {Routes,Route,Link} from 'react-router-dom';
+import {Routes,Route,Link, BrowserRouter} from 'react-router-dom';
 import DashBoard from './components/dashboard';
 import Complaint_Form from './components/complaints_form';
 import Complaint_List from './components/complaint_list';
@@ -21,12 +21,12 @@ import UserReport from './components/userrepo';
 import Signup from './components/Signup';
 import Navigation from './components/Navigation';
 // import ReportPage from './components/check';
-
+import Mainpage from './components/mainpage';
 
 function App() {
   return (
     <>
-    <Routes>
+    {/* <Routes>
         <Route path="/" element={<Login/>}/>
         <Route path='/usercomplaint_list' element={<UserComplaint_List/>}/>
         <Route path='/usercomplaints_form' element={<UserComplaint_Form/>}/>
@@ -43,12 +43,14 @@ function App() {
         <Route path="/report" element={<Reports/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/navi" element={<Navigation/>}/>
+        <Route path="/main" element={<Mainpage/>}/>
                 {/* <Route path='/check' element={<ReportPage/>}/> */}
-     </Routes>
+     {/* </Routes> */} 
     {/* <DashBoard/> */}
     {/* <Complaint_Form/> */}
-
-            
+    {/* <BrowserRouter> */}
+        <Mainpage />
+      {/* </BrowserRouter> */}
     </>
   );
 }

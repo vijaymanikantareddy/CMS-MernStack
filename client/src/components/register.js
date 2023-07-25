@@ -15,6 +15,9 @@ function Register() {
   const [showpassword, setShowpassword] = useState('');
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [confirmpassword, setConfirmpassword] = useState("");
+
+
   const navigate = useNavigate();
 
   const handleEmailChange = (e) =>{
@@ -25,21 +28,30 @@ function Register() {
     setPassword(e.target.value);
   }
 
+  const handleConfirmPasswordChange = (e) =>{
+    setConfirmpassword(e.target.value);
+  }
+
   const handleCheckboxChange = (e) => {
     setShowpassword(e.target.checked);
   }
 
   const handleSubmit = (e) =>{
     e.preventDefault();
-    axios.post('http://localhost:3001/register', {email, password, type:"user"})
+    if(password != confirmpassword){
+      alert("passwords does not match");
+      return;
+    }
+    axios.post('http://localhost:5000/register', {email, password, type:"user"})
     .then(result => {console.log(result)
       navigate('/')
+      alert("Registration Done")
     })
     .catch(err => console.log(err))
   }
 
   const handleOTPRequest = () =>{
-    axios.post('api/request-otp', {email})
+    axios.post('http://localhost:3002/verifyOTP', {email})
     .then((response) =>{
       console.log('OTP Requested Successfully: ', response.data);
     })
@@ -48,9 +60,7 @@ function Register() {
     })
   }
 
-  const changetologin=()=>{
-      window.history.pushState({}, '', '/');
-  }
+  
   return (
 <div className="flex justify-center items-center h-screen bg-indigo-600">
       <div className="w-96  p-6 bg-gray-100 shadow-lg rounded-md">
@@ -86,7 +96,7 @@ function Register() {
           <input
             type='password' id="password"
             className="border w-full text-base px-3 py-2 focus:outline-none focus:ring-0 focus:border-gray-600"
-            placeholder="Enter New Password"
+            placeholder="Enter New Password" value={password} onChange={handlePasswordChange}
           />
         </div>
         <div className="mt-3">
@@ -94,7 +104,7 @@ function Register() {
            Confirm Password
           </label>
           <input
-           type={showpassword? 'text': 'password'} id="password" value={password} onChange={handlePasswordChange}
+           type={showpassword? 'text': 'password'} id="password" value={confirmpassword} onChange={handleConfirmPasswordChange}
             className="border w-full text-base px-3 py-2 focus:outline-none focus:ring-0 focus:border-gray-600"
             placeholder="Enter Password"
           />

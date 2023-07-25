@@ -30,44 +30,23 @@ function Login() {
 
   const handleSubmit = (e) =>{
     e.preventDefault();
-    axios.post('http://localhost:3001/login', {email, password})
+    axios.post('http://localhost:5000/login', {email, password})
     .then(result => {
       console.log(result)
       if(result.data == "successuser"){
         navigate('/userdashboard')
       }else if(result.data == "successadmin"){
         navigate('/dashboard')
+      }else if(result.data == "Incorrect Password"){
+        alert("Incorrect Password")
+      }else{
+        alert("Account Does not exists")
       }
     })
     .catch(err => console.log(err))
   }
   
-  // const handleSearchCLick = () => {
-  //   if (username == "sriram" && password == "mb") {
-  //     // history.push('/dash')
-  //     // navigate('/components/Dashboard');
-  //     // alert('Hello Sriram');
-  //     window.history.pushState({}, "", "/dashboard");
-  //     window.location.reload();
-  //     // window.location.href = '/dash';
-  //     // window.history.pushState({ username: 'sriram', password: 'mb' }, '', '/dash');
-  //   } else if (username == "satwika" && password == "satwika") {
-  //     // navigate('/userdash');
-  //     // history.push('/userdash')
-  //     alert("Hello Satwika");
-  //     window.history.pushState({}, "", "/dashboard");
-  //   } else if (username == "vijay" && password == "user") {
-  //     // navigate('/userdash');
-  //     // history.push('/userdash')
-  //     alert("Hello vijay");
-  //     window.history.pushState({}, "", "/userdashboard");
-  //   } else if (username == "neeraja" && password == "neeraja") {
-  //     // navigate('/userdash');
-  //     // history.push('/userdash')
-  //     alert("Hello neeraja");
-  //     window.history.pushState({}, "", "/userdashboard");
-  //   }
-  // };
+  
   return (
     <div className="flex justify-center items-center h-screen bg-indigo-600">
       <div className="w-96  p-6 bg-gray-100 shadow-2xl rounded-md">
@@ -112,10 +91,7 @@ function Login() {
         </div>
         </form>
       </div>
-      {/* <div className="flex flex-column absolute inset-x-0 bottom-0 h-15 justify-center items-center bg-gray-800">
-        <h1 className="text-white text-sm">&copy; Vijay Manikanta Reddy Sathi</h1>
-      </div> */}
-    </div>
+      </div>
   );
 }
 export default Login;
