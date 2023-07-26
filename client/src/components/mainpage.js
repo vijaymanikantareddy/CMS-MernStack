@@ -1,13 +1,14 @@
-import React from 'react'
+import React from 'react';
 import Navigation from './Navigation';
 import Sidebar from './sidebar';
 import Navpage from './navpage';
 
 function Mainpage() {
+  
   return (
     <>
     <React.Fragment>
-        <section>
+        {/* <section>
             <div>
                 <Navigation/>
             </div>
@@ -17,7 +18,7 @@ function Mainpage() {
             <div className='col-span-3 bg-indigo-600 h-screen pl-2 md:col-span-2'> <Sidebar/></div>
             <div className='col-span-9 bg-gray-100 h-screen pl-2 md:col-span-10'><Navpage/></div>
           </div>
-        </section>
+        </section> */}
     </React.Fragment>
     </>
   )

@@ -1,32 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
-import Home from './components/home_page';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-import {Routes,Route,Link, BrowserRouter} from 'react-router-dom';
-import DashBoard from './components/dashboard';
-import Complaint_Form from './components/complaints_form';
-import Complaint_List from './components/complaint_list';
-import Work_assign from './components/work_assign';
-import Work_assign_list from './components/work_assign_list';
-import Reports from './components/report';
-import Login from './components/Login';
-import Register from './components/register';
-import UserComplaint_List from './components/usercomplaint_list';
-import UserComplaint_Form from './components/usercomplaints_form';
-import UserDashBoard from './components/userdashboard';
-import UserNavbar from './components/usernavbar';
-import UserRegistrationForm from './components/userregistration-form';
-import UserReport from './components/userrepo';
-import Signup from './components/Signup';
-import Navigation from './components/Navigation';
+import logo from "./logo.svg";
+import "./App.css";
+import Home from "./components/home_page";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
+import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
+import DashBoard from "./components/dashboard";
+import Complaint_Form from "./components/complaints_form";
+import Complaint_List from "./components/complaint_list";
+import Work_assign from "./components/work_assign";
+import Work_assign_list from "./components/work_assign_list";
+import Reports from "./components/report";
+import Login from "./components/startingpages/Login";
+import Register from "./components/startingpages/register";
+import UserComplaint_List from "./components/usercomplaint_list";
+import UserComplaint_Form from "./components/usercomplaints_form";
+import UserDashBoard from "./components/userdashboard";
+import UserNavbar from "./components/usernavbar";
+import UserRegistrationForm from "./components/userregistration-form";
+import UserReport from "./components/userrepo";
+import Signup from "./components/Signup";
+import Navigation from "./components/Navigation";
 // import ReportPage from './components/check';
-import Mainpage from './components/mainpage';
+import Mainpage from "./components/mainpage";
+import UserNavi from "./components/Navipages/userNavi";
+import AdminNavi from "./components/Navipages/adminNavi";
+import UsersData from "./components/adminside/UsersData";
+import AddUsers from "./components/adminside/AddUsers";
+import Update from "./components/startingpages/update";
 
 function App() {
   return (
     <>
-    {/* <Routes>
+      {/* <Routes>
         <Route path="/" element={<Login/>}/>
         <Route path='/usercomplaint_list' element={<UserComplaint_List/>}/>
         <Route path='/usercomplaints_form' element={<UserComplaint_Form/>}/>
@@ -45,11 +50,17 @@ function App() {
         <Route path="/navi" element={<Navigation/>}/>
         <Route path="/main" element={<Mainpage/>}/>
                 {/* <Route path='/check' element={<ReportPage/>}/> */}
-     {/* </Routes> */} 
-    {/* <DashBoard/> */}
-    {/* <Complaint_Form/> */}
-    {/* <BrowserRouter> */}
-        <Mainpage />
+      {/* </Routes> */}
+      {/* <DashBoard/> */}
+      {/* <Complaint_Form/> */}
+      {/* <BrowserRouter> */}
+      <AdminNavi/>
+      {/* <UserNavi /> */}
+      <UsersData />
+        {/* <AddUsers/> */}
+      {/* <Register /> */}
+      {/* <Update/> */}
+      {/* <Login/> */}
       {/* </BrowserRouter> */}
     </>
   );

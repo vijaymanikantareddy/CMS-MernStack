@@ -4,6 +4,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const cmsModel = require("./models/cmsdb");
+const complaintModel = require("./models/complaintform");
+
+
 
 const nodemailer = require('nodemailer');
 // const bcrypt = require('bcrypt');
@@ -25,6 +28,16 @@ if(mongoose){
 }else{
   console.log("db not connected");
 }
+
+app.get('/getuserdata', async (req, res) =>{
+  try {
+    const data = await cmsModel.find(); 
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching data from the database' });
+  }
+})
+
 
 app.post('/login', (req, res) =>{
   const {email, password} = req.body;
@@ -79,6 +92,15 @@ app.post("/register", (req, res) => {
     }
   })
   
+});
+
+
+app.post("/registercom", (req, res) => {
+  const {email, college, building, location, dat, comtype, comDes, remark, status} = req.body;
+  complaintModel
+  .create(req.body)
+  .then((complaints) => res.json(complaints))
+  .catch((err) => res.json(err));
 });
 
 
