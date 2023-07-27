@@ -15,9 +15,13 @@ const nodemailer = require('nodemailer');
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin:["https://cms-mern-stack.vercel.app"],
+  methods:["POST", "GET"],
+  credentials:true
+}));
 
-mongoose.connect("mongodb+srv://vijaymanikantareddy:vijay123@cluster0.8txcp3s.mongodb.net/cmsdb");
+mongoose.connect("mongodb+srv://vijaymanikantareddy:vijay123@cluster0.8txcp3s.mongodb.net/cmsdb?retryWrites=true&w=majority");
 
 app.listen(5000, () => {
   console.log("Server is Running");
