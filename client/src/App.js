@@ -1,38 +1,37 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Home from "./components/home_page";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min";
 import { Routes, Route, Link, BrowserRouter } from "react-router-dom";
-import DashBoard from "./components/dashboard";
-import Complaint_Form from "./components/complaints_form";
-import Complaint_List from "./components/complaint_list";
-import Work_assign from "./components/work_assign";
-import Work_assign_list from "./components/work_assign_list";
-import Reports from "./components/report";
-import Login from "./components/startingpages/Login";
-import Register from "./components/startingpages/register";
-import UserComplaint_List from "./components/usercomplaint_list";
-import UserComplaint_Form from "./components/usercomplaints_form";
-import UserDashBoard from "./components/userdashboard";
-import UserNavbar from "./components/usernavbar";
-import UserRegistrationForm from "./components/userregistration-form";
-import UserReport from "./components/userrepo";
-import Signup from "./components/Signup";
-import Navigation from "./components/Navigation";
-// import ReportPage from './components/check';
-import Mainpage from "./components/mainpage";
 import UserNavi from "./components/Navipages/userNavi";
 import AdminNavi from "./components/Navipages/adminNavi";
 import UsersData from "./components/adminside/UsersData";
 import AddUsers from "./components/adminside/AddUsers";
 import Update from "./components/startingpages/update";
+import Register from "./components/startingpages/register";
+import ComplaintFormAd from "./components/adminside/ComplaintFormAd";
+import ComplaintFormUs from "./components/userside/ComplaintFormUs";
+import AllComplaints from "./components/adminside/AllComplaints";
+import UpdateCompli from "./components/adminside/UpdateCompli";
+import Login from "./components/startingpages/Login";
 
 function App() {
   return (
     <>
+    <Routes>
+      <Route path="/" element={<Login/>}/>
+      <Route path="/register" element={<Register/>}/>
+      <Route path="/update" element={<Update/>}/>
+      <Route path="/user" element={<UserNavi/>}/>
+      <Route path="/admin" element={<AdminNavi/>}/>
+      <Route path="/user/complaintform" element={<ComplaintFormUs/>}/>
+      <Route path="/admin/complaintform" element={<ComplaintFormAd/>}/>
+      <Route path="/admin/userdata" element={<UsersData/>}/>
+      <Route path="/admin/allcomplaints" element={<AllComplaints/>}/>
+      <Route path="/admin/createuser" element={<AddUsers/>}/>
+      <Route path="/admin/updatecomplaint" element={<UpdateCompli/>}/>
+      <Route path="/*" element={<div>This Page Does not Exists</div>}/>
+    </Routes>
       {/* <Routes>
-        <Route path="/" element={<Login/>}/>
         <Route path='/usercomplaint_list' element={<UserComplaint_List/>}/>
         <Route path='/usercomplaints_form' element={<UserComplaint_Form/>}/>
         <Route path='/userdashboard' element={<UserDashBoard/>}/>
@@ -54,12 +53,15 @@ function App() {
       {/* <DashBoard/> */}
       {/* <Complaint_Form/> */}
       {/* <BrowserRouter> */}
-      <AdminNavi/>
+      {/* <AdminNavi/> */}
       {/* <UserNavi /> */}
-      <UsersData />
-        {/* <AddUsers/> */}
+      {/* <UsersData /> */}
+      {/* <ComplaintForm/> */}
+      {/* <AddUsers/> */}
       {/* <Register /> */}
       {/* <Update/> */}
+      {/* <AllComplaints/> */}
+      {/* <UpdateCompli/> */}
       {/* <Login/> */}
       {/* </BrowserRouter> */}
     </>

@@ -172,7 +172,8 @@ function Update() {
           <div className="mt-3">
             <button
               type="submit"
-              class="border-2 border-indigo-800 bg-indigo-700 text-white py-1 w-full rounded-md hover:text-black font-semibold hover:bg-indigo-900 ">
+              class="border-2 border-indigo-800 bg-indigo-700 text-white py-1 w-full rounded-md hover:text-black font-semibold hover:bg-indigo-900 "
+            >
               Update
             </button>
           </div>

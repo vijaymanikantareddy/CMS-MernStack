@@ -96,13 +96,71 @@ app.post("/register", (req, res) => {
 
 
 app.post("/registercom", (req, res) => {
-  const {email, college, building, location, dat, comtype, comDes, remark, status} = req.body;
+  const {email, college, building, location, date, type, comDes, remark, status} = req.body;
   complaintModel
   .create(req.body)
   .then((complaints) => res.json(complaints))
   .catch((err) => res.json(err));
 });
 
+
+app.get('/allcomplaints', async (req, res) =>{
+  try {
+    const data = await complaintModel.find(); 
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching data from the database' });
+  }
+})
+
+app.post('/deletecomplaint', async (req, res) =>{
+  const {userid} = req.body;
+  try{
+    complaintModel.deleteOne(
+      {_id:userid}, function(err, res){
+        console.log(err);
+      }
+    )
+    res.send({status:"Ok", data:"Deleted"})
+  }catch(err){
+    console.log(err);
+  }
+})
+
+
+app.post("/updatecomplaint", (req, res) => {
+  const {id, worker} = req.body;
+  complaintModel.findOne({id})
+  .then((complaint) =>{
+    // const newUser = new user({
+    //   email,
+    //   password,
+    //   verified: false
+    // });
+    // newUser.save()
+    // .then((result) =>{
+    //   sendOTPVerificationMail(result, res)
+    // })
+
+
+    if(complaint){
+      complaintModel.findOneAndUpdate({id}, req.body, {new:true})
+      .then((updateComplaint) =>{
+        res.json(updateComplaint)
+      })
+      .catch((err)=>{
+        res.status(500).json({error: "Error Updating Existing Record"})
+      });
+    }
+    else{
+      cmsModel
+      .create(req.body)
+      .then((cms) => res.json(cms))
+      .catch((err) => res.json(err));
+    }
+  })
+  
+});
 
 // OTP Verification
 // const sendOTPVerificationMail = async({_id, email}, res) =>{

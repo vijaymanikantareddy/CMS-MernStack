@@ -3,10 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 // import Register from "./Register";
 import "bootstrap/dist/css/bootstrap.min.css";
-import DashBoard from "../dashboard";
-// import './login.css';
-// import UserNavbar from "./usernavbar";
-import UserDashBoard from "../userdashboard";
+
 import axios from "axios";
 
 function Login() {
@@ -35,9 +32,9 @@ function Login() {
       .then((result) => {
         console.log(result);
         if (result.data == "successuser") {
-          navigate("/userdashboard");
+          navigate("/user", { state: { email } });
         } else if (result.data == "successadmin") {
-          navigate("/dashboard");
+          navigate("/admin", { state: { email } });
         } else if (result.data == "Incorrect Password") {
           alert("Incorrect Password");
         } else {

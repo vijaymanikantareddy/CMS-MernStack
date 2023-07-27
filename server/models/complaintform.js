@@ -5,10 +5,14 @@ const complaintSchema = new mongoose.Schema({
     college: String,
     building: String,
     location: String,
-    dat: Date,
-    comtype: String,
+    room: String,
+    date: Date,
+    type: String,
     comdes: String,
-    remark: String
+    remark: String,
+    status: String,
+    floor: String,
+    worker: String,
 })
 
 const complaintModel = mongoose.model("complaints", complaintSchema)
