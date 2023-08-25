@@ -6,64 +6,78 @@ const cors = require("cors");
 const cmsModel = require("./models/cmsdb");
 const complaintModel = require("./models/complaintform");
 
-
-
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
+const workerModel = require("./models/workerdb");
 // const bcrypt = require('bcrypt');
-
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect("mongodb+srv://vijaymanikantareddy:vijay123@cluster0.8txcp3s.mongodb.net/cmsdb");
+mongoose.connect(
+  "mongodb+srv://vijaymanikantareddy:vijay123@cluster0.8txcp3s.mongodb.net/cmsdb"
+);
 
 app.listen(5000, () => {
   console.log("Server is Running");
 });
 
-if(mongoose){
+if (mongoose) {
   console.log("db connected");
-}else{
+} else {
   console.log("db not connected");
 }
 
-app.get('/getuserdata', async (req, res) =>{
+app.get("/getuserdata", async (req, res) => {
   try {
-    const data = await cmsModel.find(); 
+    const data = await cmsModel.find();
     res.json(data);
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching data from the database' });
+    res.status(500).json({ message: "Error fetching data from the database" });
   }
-})
+});
 
-
-app.post('/login', (req, res) =>{
-  const {email, password} = req.body;
-  cmsModel.findOne({email: email})
-  .then(user =>{
-    if(user){
-      if(user.password === password){
-        if(user.type === 'user'){
-          res.json('successuser')
-        }else if(user.type === 'admin'){
-          res.json('successadmin')
-        }
-      }else{
-        res.json("Incorrect Password")
-      }
-    }else{
-      res.json("No such record exists")
+app.post("/getuser", (req, res) => {
+  const { roll } = req.body;
+  cmsModel.findOne({ roll: roll }).then((user) => {
+    if (user) {
+      res.json("success");
+    } else {
+      res.json("No such record exists");
     }
-  })
-})
+  });
+});
 
+app.post("/login", (req, res) => {
+  const { email, password } = req.body;
+  cmsModel.findOne({ email: email }).then((user) => {
+    if (user) {
+      if (user.password === password) {
+        if (user.type === "user") {
+          res.json("successuser");
+        } else if (user.type === "admin") {
+          res.json("successadmin");
+        }
+      } else {
+        res.json("Incorrect Password");
+      }
+    } else {
+      res.json("No such record exists");
+    }
+  });
+});
+
+app.post("/addworker", (req, res) => {
+  workerModel
+    .create(req.body)
+    .then((workers) => res.json(workers))
+    .catch((err) => res.json(err));
+});
 
 app.post("/register", (req, res) => {
-  const {email} = req.body;
-  cmsModel.findOne({email})
-  .then((user) =>{
+  const { email } = req.body;
+  cmsModel.findOne({ email }).then((user) => {
     // const newUser = new user({
     //   email,
     //   password,
@@ -74,64 +88,66 @@ app.post("/register", (req, res) => {
     //   sendOTPVerificationMail(result, res)
     // })
 
-
-    if(user){
-      cmsModel.findOneAndUpdate({email}, req.body, {new:true})
-      .then((updateuser) =>{
-        res.json(updateuser)
-      })
-      .catch((err)=>{
-        res.status(500).json({error: "Error Updating Existing Record"})
-      });
-    }
-    else{
-      cmsModel
+    // if (user) {
+    //   cmsModel
+    //     .findOneAndUpdate({ email }, req.body, { new: true })
+    //     .then((updateuser) => {
+    //       res.json(updateuser);
+    //     })
+    //     .catch((err) => {
+    //       res.status(500).json({ error: "Error Updating Existing Record" });
+    //     });
+    // } else {
+    cmsModel
       .create(req.body)
       .then((cms) => res.json(cms))
       .catch((err) => res.json(err));
-    }
-  })
-  
+    // }
+  });
 });
-
 
 app.post("/registercom", (req, res) => {
-  const {email, college, building, location, date, type, comDes, remark, status} = req.body;
+  const {
+    email,
+    college,
+    building,
+    location,
+    date,
+    type,
+    comDes,
+    remark,
+    status,
+  } = req.body;
   complaintModel
-  .create(req.body)
-  .then((complaints) => res.json(complaints))
-  .catch((err) => res.json(err));
+    .create(req.body)
+    .then((complaints) => res.json(complaints))
+    .catch((err) => res.json(err));
 });
 
-
-app.get('/allcomplaints', async (req, res) =>{
+app.get("/allcomplaints", async (req, res) => {
   try {
-    const data = await complaintModel.find(); 
+    const data = await complaintModel.find();
     res.json(data);
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching data from the database' });
+    res.status(500).json({ message: "Error fetching data from the database" });
   }
-})
+});
 
-app.post('/deletecomplaint', async (req, res) =>{
-  const {userid} = req.body;
-  try{
-    complaintModel.deleteOne(
-      {_id:userid}, function(err, res){
-        console.log(err);
-      }
-    )
-    res.send({status:"Ok", data:"Deleted"})
-  }catch(err){
+app.post("/deletecomplaint", async (req, res) => {
+  const { userid } = req.body;
+  try {
+    complaintModel.deleteOne({ _id: userid }, function (err, res) {
+      console.log(err);
+    });
+    res.send({ status: "Ok", data: "Deleted" });
+  } catch (err) {
     console.log(err);
   }
-})
-
+});
 
 app.post("/updatecomplaint", (req, res) => {
-  const {id, worker} = req.body;
-  complaintModel.findOne({id})
-  .then((complaint) =>{
+  const { id, worker } = req.body;
+  complaintModel.findOne({ id }).then((complaint) => {
     // const newUser = new user({
     //   email,
     //   password,
@@ -142,24 +158,22 @@ app.post("/updatecomplaint", (req, res) => {
     //   sendOTPVerificationMail(result, res)
     // })
 
-
-    if(complaint){
-      complaintModel.findOneAndUpdate({id}, req.body, {new:true})
-      .then((updateComplaint) =>{
-        res.json(updateComplaint)
-      })
-      .catch((err)=>{
-        res.status(500).json({error: "Error Updating Existing Record"})
-      });
-    }
-    else{
+    if (complaint) {
+      complaintModel
+        .findOneAndUpdate({ id }, req.body, { new: true })
+        .then((updateComplaint) => {
+          res.json(updateComplaint);
+        })
+        .catch((err) => {
+          res.status(500).json({ error: "Error Updating Existing Record" });
+        });
+    } else {
       cmsModel
-      .create(req.body)
-      .then((cms) => res.json(cms))
-      .catch((err) => res.json(err));
+        .create(req.body)
+        .then((cms) => res.json(cms))
+        .catch((err) => res.json(err));
     }
-  })
-  
+  });
 });
 
 // OTP Verification
@@ -200,7 +214,6 @@ app.post("/updatecomplaint", (req, res) => {
 //     })
 //   }
 // }
-
 
 // app.post('/verifyOTP', async(req, res) =>{
 //   try{
@@ -243,5 +256,5 @@ app.post("/updatecomplaint", (req, res) => {
 //       status: "FAILED",
 //       message: err.message
 //     })
-//   } 
+//   }
 // })

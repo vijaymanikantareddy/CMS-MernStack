@@ -1,59 +1,21 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "../styles/registyle.css";
+// import "../styles/registyle.css";
+import '../styles/styles.css';
 import "bootstrap/dist/css/bootstrap.min.css";
-import AdminNavi from "../Navipages/adminNavi";
+import Navbar from "../navpages/adminnav";
 
-function AllComplaints() {
-  const [records, setRecords] = useState([]);
-  const [columns, setColumns] = useState([]);
+function all_complaints() {
+  // const [records, setRecords] = useState([]);
+  // const [columns, setColumns] = useState([]);
 
-  const [search, setSearch] = useState("");
-  const [searchval, setSearchval] = useState("");
-
-  const handleSearchvalChange = (e) => {
-    console.log(searchval);
-    setSearchval(e.target.value);
-  };
-
-  const handleSearchChange = (e) => {
-    setSearch(e.target.value);
-  };
-
-  const handleDelete = (id) => {
-    // const confirm = window.confirm('Do you want to Delete?');
-    // if(confirm){
-    //   fetch('http://localhost:5000/deletecomplaint',{
-    //     method: "POST",
-    //     crossDomain: true,
-    //     headers:{
-    //       "Content-Type":"application/json",
-    //       Accept: "application/json",
-    //       "Access-Control-Allow-Origin": "*",
-    //     },
-    //     body:JSON.stringify({
-    //       userid: id,
-    //     })
-    //   })
-    //   .then(res =>{
-    //     alert("Complaint Deleted")
-    //   })
-    // }
-  };
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:5000/allcomplaints")
-      .then((res) => {
-        setColumns(Object.keys(res.data[0]));
-        setRecords(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  // const [search, setSearch] = useState("");
+  // const [searchval, setSearchval] = useState("");
   return (
     <>
-    <AdminNavi/>
+    <Navbar/>
+    
       <div className="container mt-1">
         <h1 className="text-center text-indigo-700 mt-3">All Complaints</h1>
         <hr />
@@ -63,8 +25,7 @@ function AllComplaints() {
               <select
                 id="inputState"
                 class="form-control"
-                value={searchval}
-                onChange={handleSearchvalChange}
+                
               >
                 <option selected>Search By</option>
                 <option value="college">college</option>
@@ -82,8 +43,7 @@ function AllComplaints() {
                 class="form-control"
                 id="searching"
                 placeholder="Enter Complaint"
-                value={search}
-                onChange={handleSearchChange}
+                
               />
             </div>
           </div>
@@ -106,7 +66,7 @@ function AllComplaints() {
             </tr>
           </thead>
           <tbody>
-            {records
+            {/* {records
               .filter((item) => {
                 const searchLowerCase = search.toLowerCase();
                 const itemTypeLowerCase = (item[searchval] || "").toLowerCase();
@@ -136,13 +96,13 @@ function AllComplaints() {
                     </Link>
                     <button
                       className="btn btn-sm btn-danger ml-1 mb-1"
-                      onClick={handleDelete(i._id)}
+                      
                     >
                       Delete
                     </button>
                   </td>
                 </tr>
-              ))}
+              ))} */}
           </tbody>
         </table>
       </div>
@@ -150,4 +110,10 @@ function AllComplaints() {
   );
 }
 
-export default AllComplaints;
+export default all_complaints;
+
+
+
+
+
+

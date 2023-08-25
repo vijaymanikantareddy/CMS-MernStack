@@ -8,7 +8,7 @@ import axios from "axios";
 
 function Login() {
   const [password, setPassword] = useState("");
-  const [showpassword, setShowpassword] = useState("");
+  const [showpassword, setShowpassword] = useState(false);
   const [email, setEmail] = useState("");
 
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ function Login() {
     setEmail(e.target.value);
   };
 
-  const togglePasswordVisibility = () => {
+  const togglePasswordVisibility = (e) => {
     setShowpassword(!showpassword);
   };
 
@@ -31,14 +31,14 @@ function Login() {
       .post("http://localhost:5000/login", { email, password })
       .then((result) => {
         console.log(result);
-        if (result.data == "successuser") {
-          navigate("/user", { state: { email } });
-        } else if (result.data == "successadmin") {
-          navigate("/admin", { state: { email } });
-        } else if (result.data == "Incorrect Password") {
+        if (result.data === "successuser") {
+          navigate("/user_complaint_form");
+        } else if (result.data === "successadmin") {
+          navigate("/Complaintform_admin");
+        } else if (result.data === "Incorrect Password") {
           alert("Incorrect Password");
         } else {
-          alert("Account Does not exists");
+          alert("Account Does not exist");
         }
       })
       .catch((err) => console.log(err));
@@ -46,7 +46,7 @@ function Login() {
 
   return (
     <div className="flex justify-center items-center h-screen bg-indigo-600">
-      <div className="w-96  p-6 bg-gray-100 shadow-2xl rounded-md">
+      <div className="w-96 p-6 bg-gray-100 shadow-2xl rounded-md">
         <h1 className="text-3xl block text-center font-semibold">Login</h1>
         <hr className="mt-3" />
         <form onSubmit={handleSubmit}>
@@ -69,7 +69,7 @@ function Login() {
 
           <div className="mt-3">
             <label for="password" className="block text-base mb-2 font-bold">
-              New Password
+              Password
             </label>
             <div className="input-group">
               <input
