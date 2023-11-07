@@ -3,32 +3,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./allComplaintsstyle.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
-import Navbar from "../navpages/adminnav";
+// import Navbar from "../navpages/adminnav";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
-import UpdateCom from "../adminside/updateCom/UpdateCom";
 
 import DataTable from "react-data-table-component";
-import AdminNavbar from "../navigationbars/AdminNavbar";
+import UserNavbar from "../navigationbars/UserNavbar";
 
-function AllComplaints() {
+function Mycomplaints(props) {
   const [searchBy, setSearchBy] = useState("");
   const [searchText, setSearchText] = useState("");
   const [data, setData] = useState([]);
 
-  const handleDelete = (id) => {
-    if (window.confirm("Are you sure you want to delete this complaint?")) {
-      axios
-        .delete("http://localhost:5000/deletecomplaint/" + id)
-        .then((res) => {
-          console.log(res);
-          window.location.reload();
-        })
-        .catch((err) => console.log(err));
-    }
-  };
-
   const columns = [
-    { name: "Email", selector: "email", sortable: true },
     { name: "College", selector: "college", sortable: true },
     { name: "Building", selector: "building", sortable: true },
     { name: "Date", selector: "date", sortable: true },
@@ -37,45 +23,22 @@ function AllComplaints() {
     { name: "Description", selector: "comdes", sortable: true },
     { name: "Status", selector: "status", sortable: true },
     { name: "Worker", selector: "worker", sortable: true },
-    {
-      name: "Operation",
-      selector: "operation",
-      cell: (row) => (
-        <div>
-          <button
-            // onClick={() => handleAssign(row)} // You can define a function to handle assignment
-            className="btn btn-sm btn-primary"
-            style={{ display: "inline-flex", alignItems: "center" }}
-          >
-            <Link
-              to={`/updateCom/${row._id}`}
-              style={{ color: "white", textDecoration: "none" }}
-            >
-              Update
-            </Link>
-          </button>
-          <button
-            onClick={() => handleDelete(row._id)} // You can define a function to handle deletion
-            className="btn btn-sm btn-danger ml-1"
-          >
-            Delete
-          </button>
-        </div>
-      ),
-    },
   ];
 
   useEffect(() => {
     axios
       .get("http://localhost:5000/allcomplaints")
       .then((response) => {
-        setData(response.data);
-        setRecords(response.data);
+        const allComplaints = response.data;
+        const filteredComplaints = allComplaints.filter((complaint) => {
+          return complaint.email === props.email;
+        });
+        setRecords(filteredComplaints);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, []);
+  }, [props.email]);
 
   const [records, setRecords] = useState(data);
 
@@ -100,10 +63,9 @@ function AllComplaints() {
 
   return (
     <>
-      {/* <Navbar /> */}
-      <AdminNavbar />
+      <UserNavbar />
       <div className="">
-        <h1 className="allcomplaintshead text-center">All Complaints</h1>
+        <h1 className="allcomplaintshead text-center">My Complaints</h1>
         <hr />
         <form className="alcsearch container-fluid">
           <div className="row">
@@ -116,7 +78,6 @@ function AllComplaints() {
                 onChange={(e) => setSearchBy(e.target.value)}
               >
                 <option value="">Search By</option>
-                <option value="email">Email</option>
                 <option value="college">College</option>
                 <option value="building">Building</option>
                 <option value="date">Date</option>
@@ -171,4 +132,4 @@ function AllComplaints() {
   );
 }
 
-export default AllComplaints;
+export default Mycomplaints;

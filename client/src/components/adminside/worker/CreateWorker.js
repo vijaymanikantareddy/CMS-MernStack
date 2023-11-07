@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 
 import InputGroup from "react-bootstrap/InputGroup";
 import "./updateworker.css";
+import AdminNavbar from "../../navigationbars/AdminNavbar";
 
 function CreateWorker() {
   const { id } = useParams();
@@ -42,6 +43,7 @@ function CreateWorker() {
 
   return (
     <div>
+      <AdminNavbar />
       <div className="mainbody">
         <section className="container">
           <header>Add Worker</header>

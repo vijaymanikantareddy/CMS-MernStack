@@ -7,6 +7,7 @@ import axios from "axios";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 
 import DataTable from "react-data-table-component";
+import AdminNavbar from "../../navigationbars/AdminNavbar";
 
 function ViewWorkers() {
   const [searchBy, setSearchBy] = useState("");
@@ -95,7 +96,7 @@ function ViewWorkers() {
   return (
     <>
       {/* <Navbar /> */}
-
+<AdminNavbar/>
       <div className="">
         <h1 className="allcomplaintshead text-center">All Workers</h1>
         <hr />
@@ -128,7 +129,7 @@ function ViewWorkers() {
               />
             </div>
             <div className="form-group col-md-2 md:pt-0 sm:pt-5">
-              <button className="btn btn-success"> Add Worker</button>
+            <Link to="/addworker" className="btn btn-success">Add Worker</Link>
             </div>
           </div>
         </form>

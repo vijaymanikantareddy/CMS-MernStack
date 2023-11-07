@@ -7,6 +7,7 @@ import Navbar from "../../navpages/adminnav";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 
 import DataTable from "react-data-table-component";
+import AdminNavbar from "../../navigationbars/AdminNavbar";
 
 function ViewUsers() {
   const [searchBy, setSearchBy] = useState("");
@@ -97,8 +98,8 @@ function ViewUsers() {
 
   return (
     <>
-      <Navbar />
-
+      {/* <Navbar /> */}
+<AdminNavbar/>
       <div className="">
         <h1 className="allcomplaintshead text-center">All Users</h1>
         <hr />
@@ -133,7 +134,7 @@ function ViewUsers() {
               />
             </div>
             <div className="form-group col-md-2 md:pt-0 sm:pt-5">
-              <button className="btn btn-success"> Add User</button>
+            <Link to="/adduser" className="btn btn-success">Add User</Link>
             </div>
           </div>
         </form>

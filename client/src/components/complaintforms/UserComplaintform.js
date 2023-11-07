@@ -1,11 +1,12 @@
 import React from 'react'
 import User_Navbar from '../navpages/usernav'
 import ComplaintFormAd from '../adminside/complaintform'
+import UserNavbar from '../navigationbars/UserNavbar'
 
 function UserComplaintform() {
   return (
     <div>
-        <User_Navbar/>
+        <UserNavbar/>
         <ComplaintFormAd/>
     </div>
   )

@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 
 import InputGroup from "react-bootstrap/InputGroup";
 import "./updateworker.css";
+import AdminNavbar from "../../navigationbars/AdminNavbar";
 
 function CreateUser() {
   const { id } = useParams();
@@ -53,6 +54,7 @@ function CreateUser() {
 
   return (
     <div>
+      <AdminNavbar/>
       <div className="mainbody">
         <section className="container">
           <header>Add User</header>

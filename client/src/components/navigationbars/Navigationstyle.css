@@ -1,0 +1,19 @@
+/* styles.css */
+.custom-navbar {
+  background-color: #4f46e5;
+  color: white;
+  margin-bottom: -15px;
+  padding-bottom: 10px;
+}
+
+.custom-brand {
+  /* Add custom styles for the Brand */
+}
+
+.custom-nav {
+  /* Add custom styles for the Nav element */
+}
+
+.custom-nav-link {
+  /* Add custom styles for the Nav links */
+}

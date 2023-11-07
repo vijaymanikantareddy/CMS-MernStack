@@ -56,7 +56,7 @@ function User_Navbar() {
                       {navigation.map((item) => (
                         <Link
                           key={item.name}
-                          to={item.href}
+                          to={`/${item.href}`} // Use an absolute path
                           style={{ textDecoration: "none" }}
                           className={classNames(
                             location.pathname === `/${item.href}`

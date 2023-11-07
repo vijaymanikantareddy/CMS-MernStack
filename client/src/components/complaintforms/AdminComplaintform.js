@@ -1,14 +1,16 @@
-import React from 'react'
-import Navbar from '../navpages/adminnav'
-import ComplaintFormAd from '../adminside/complaintform'
+import React from "react";
+import Navbar from "../navpages/adminnav";
+import ComplaintFormAd from "../adminside/complaintform";
+import AdminNavbar from "../navigationbars/AdminNavbar";
+
 
 function AdminComplaintform() {
   return (
     <div>
-        <Navbar/>
-        <ComplaintFormAd/>
+      <AdminNavbar />
+      <ComplaintFormAd />
     </div>
-  )
+  );
 }
 
-export default AdminComplaintform
+export default AdminComplaintform;
