@@ -2,11 +2,11 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 // import "../styles/registyle.css";
-import '../styles/styles.css';
+import "../styles/styles.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import User_Navbar from "../navpages/usernav";
 
-function user_all_complaints() {
+function User_all_complaints() {
   // const [records, setRecords] = useState([]);
   // const [columns, setColumns] = useState([]);
 
@@ -14,19 +14,15 @@ function user_all_complaints() {
   // const [searchval, setSearchval] = useState("");
   return (
     <>
-    <User_Navbar/>
-    
+      <User_Navbar />
+
       <div className="container mt-1">
-        <h1 className="text-center text-indigo-700 mt-3">All Complaints</h1>
+        <h1 className="text-center text-indigo-700 mt-3">My Complaints</h1>
         <hr />
         <form className="container">
           <div className="row">
             <div class="form-group col-md-3 mt-3 mb-3">
-              <select
-                id="inputState"
-                class="form-control"
-                
-              >
+              <select id="inputState" class="form-control">
                 <option selected>Search By</option>
                 <option value="college">college</option>
                 <option value="email">email</option>
@@ -43,7 +39,6 @@ function user_all_complaints() {
                 class="form-control"
                 id="searching"
                 placeholder="Enter Complaint"
-                
               />
             </div>
           </div>
@@ -110,5 +105,4 @@ function user_all_complaints() {
   );
 }
 
-export default user_all_complaints;
-
+export default User_all_complaints;

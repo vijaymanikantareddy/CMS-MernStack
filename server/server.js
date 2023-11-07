@@ -9,6 +9,7 @@ const complaintModel = require("./models/complaintform");
 const nodemailer = require("nodemailer");
 const workerModel = require("./models/workerdb");
 // const bcrypt = require('bcrypt');
+const sendMail = require("./controllers/sendMail");
 
 const app = express();
 
@@ -28,6 +29,9 @@ if (mongoose) {
 } else {
   console.log("db not connected");
 }
+
+// Email sending
+app.get("/mail", sendMail);
 
 app.get("/getuserdata", async (req, res) => {
   try {
@@ -68,8 +72,15 @@ app.post("/login", (req, res) => {
   });
 });
 
-app.post("/addworker", (req, res) => {
+app.put("/addworker", (req, res) => {
   workerModel
+    .create(req.body)
+    .then((workers) => res.json(workers))
+    .catch((err) => res.json(err));
+});
+
+app.put("/adduser", (req, res) => {
+  cmsModel
     .create(req.body)
     .then((workers) => res.json(workers))
     .catch((err) => res.json(err));
@@ -117,6 +128,8 @@ app.post("/registercom", (req, res) => {
     comDes,
     remark,
     status,
+    floor,
+    room,
   } = req.body;
   complaintModel
     .create(req.body)
@@ -133,17 +146,197 @@ app.get("/allcomplaints", async (req, res) => {
   }
 });
 
-app.post("/deletecomplaint", async (req, res) => {
-  const { userid } = req.body;
+app.get("/allworkers", async (req, res) => {
   try {
-    complaintModel.deleteOne({ _id: userid }, function (err, res) {
-      console.log(err);
-    });
-    res.send({ status: "Ok", data: "Deleted" });
-  } catch (err) {
-    console.log(err);
+    const data = await workerModel.find();
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching data from the database" });
   }
 });
+
+app.get("/allusers", async (req, res) => {
+  try {
+    const data = await cmsModel.find();
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching data from the database" });
+  }
+});
+
+app.delete("/deletecomplaint/:id", (req, res) => {
+  const id = req.params.id;
+  complaintModel
+    .findByIdAndDelete({ _id: id })
+    .then((res) => res.json(res))
+    .catch((err) => res.json(err));
+});
+
+app.delete("/deleteWorker/:id", (req, res) => {
+  const id = req.params.id;
+  workerModel
+    .findByIdAndDelete({ _id: id })
+    .then((res) => res.json(res))
+    .catch((err) => res.json(err));
+});
+
+app.delete("/deleteUser/:id", (req, res) => {
+  const id = req.params.id;
+  cmsModel
+    .findByIdAndDelete({ _id: id })
+    .then((res) => res.json(res))
+    .catch((err) => res.json(err));
+});
+
+app.put("/updateCom/:id", async (req, res) => {
+  const id = req.params.id;
+  const {
+    email,
+    date,
+    remark,
+    type,
+    college,
+    building,
+    floor,
+    room,
+    comdes,
+    status, // Include status in the request
+    worker, // Include worker in the request
+  } = req.body;
+
+  try {
+    // Update the complaint based on the provided fields
+    const updatedComplaint = await complaintModel.findByIdAndUpdate(
+      id,
+      {
+        email,
+        date,
+        remark,
+        type,
+        college,
+        building,
+        floor,
+        room,
+        comdes,
+        status, // Update status
+        worker, // Update worker
+      },
+      { new: true } // Return the updated complaint
+    );
+
+    if (!updatedComplaint) {
+      return res.status(404).json({ message: "Complaint not found" });
+    }
+
+    res.status(200).json(updatedComplaint);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+app.put("/updateWorker/:id", async (req, res) => {
+  const id = req.params.id;
+  const {
+    email,
+    name,
+    type,
+    phone, // Include worker in the request
+  } = req.body;
+
+  try {
+    // Update the complaint based on the provided fields
+    const updatedComplaint = await workerModel.findByIdAndUpdate(
+      id,
+      {
+        email,
+        name,
+        phone,
+        type, // Update worker
+      },
+      { new: true } // Return the updated complaint
+    );
+
+    if (!updatedComplaint) {
+      return res.status(404).json({ message: "Complaint not found" });
+    }
+
+    res.status(200).json(updatedComplaint);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+app.put("/updateUser/:id", async (req, res) => {
+  const id = req.params.id;
+  const { email, phone, fullname, rollnumber, gender, branch, password, type } =
+    req.body;
+
+  try {
+    const updatedComplaint = await workerModel.findByIdAndUpdate(
+      id,
+      {
+        email,
+        phone,
+        fullname,
+        rollnumber,
+        gender,
+        branch,
+        password,
+        type,
+      },
+      { new: true }
+    );
+
+    if (!updatedComplaint) {
+      return res.status(404).json({ message: "Complaint not found" });
+    }
+
+    res.status(200).json(updatedComplaint);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+app.get("/getComplaint/:id", async (req, res) => {
+  const id = req.params.id;
+  complaintModel
+    .findById(id)
+    .then((complaint) => {
+      if (!complaint) {
+        return res.status(404).json({ error: "Complaint not found" });
+      }
+      res.json(complaint);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json({ error: "Server error" });
+    });
+});
+
+app.get("/getAllWorkers", async (req, res) => {
+  try {
+    const workers = await workerModel.find();
+    res.json({ workers });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+// app.post("/deletecomplaint", async (req, res) => {
+//   const { userid } = req.body;
+//   try {
+//     complaintModel.deleteOne({ _id: userid }, function (err, res) {
+//       console.log(err);
+//     });
+//     res.send({ status: "Ok", data: "Deleted" });
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });
 
 app.post("/updatecomplaint", (req, res) => {
   const { id, worker } = req.body;

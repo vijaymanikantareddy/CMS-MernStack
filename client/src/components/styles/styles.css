@@ -1,7 +1,21 @@
-.navnav{
-    background-color: #3027cf;
+* {
+  font-family: "Kanit", sans-serif;
+  font-family: "Roboto", sans-serif;
+}
+.navnav {
+  background-color: #3027cf;
 }
 
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
+}
+
+.admincfbg {
+  height: 100vh;
+  padding-bottom: -50px;
+  background-image: url("workplace-with-keyboard-supplies.jpg"); /* Replace with your background image URL */
+  background-color: rgba(0, 0, 0, 0.5);
+  background-size: cover; 
+  background-position: center center;
+  background-repeat: no-repeat;
 }
