@@ -29,7 +29,7 @@ https://github.com/vijaymanikantareddy/CMS-MernStack.git
 
 2. Navigate to the project folder:
 
-cd votingapp
+cd CMS-MernStack
 
 3. Install dependencies for the client and server:
 
