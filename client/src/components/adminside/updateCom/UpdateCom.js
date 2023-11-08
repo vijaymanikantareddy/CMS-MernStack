@@ -31,14 +31,14 @@ function UpdateCom() {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
+  (() => {
     axios
       .get("http://localhost:5000/getAllWorkers")
       .then((result) => {
         setAllWorkers(result.data.workers);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, []);useEffect
 
   useEffect(() => {
     if (type) {
@@ -99,7 +99,7 @@ function UpdateCom() {
       })
       .then((result) => {
         console.log(result);
-        navigate("/");
+        navigate("/allcomplaints");
       })
       .catch((err) => console.log(err));
   };

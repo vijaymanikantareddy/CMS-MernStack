@@ -32,9 +32,9 @@ function Login() {
       .then((result) => {
         console.log(result);
         if (result.data === "successuser") {
-          navigate("/user_complaint_form");
+          navigate("/usercomplaintform");
         } else if (result.data === "successadmin") {
-          navigate("/Complaintform_admin");
+          navigate("/allcomplaints");
         } else if (result.data === "Incorrect Password") {
           alert("Incorrect Password");
         } else {

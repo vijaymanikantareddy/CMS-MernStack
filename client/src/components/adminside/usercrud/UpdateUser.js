@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 
 import InputGroup from "react-bootstrap/InputGroup";
 import "./updateworker.css";
+import AdminNavbar from "../../navigationbars/AdminNavbar";
 
 function UpdateUser() {
   const { id } = useParams();
@@ -31,7 +32,7 @@ function UpdateUser() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/getUser/${id}`)
+      .get(`http://localhost:5000/updateUser/${id}`)
       .then((result) => {
         console.log(result);
         setType(result.data.type);
@@ -57,7 +58,7 @@ function UpdateUser() {
         gender,
         branch,
         password,
-        type : "user",
+        type: "user",
       })
       .then((result) => {
         console.log(result);
@@ -68,6 +69,7 @@ function UpdateUser() {
 
   return (
     <div>
+      <AdminNavbar/>
       <div className="mainbody">
         <section className="container">
           <header>Update User</header>

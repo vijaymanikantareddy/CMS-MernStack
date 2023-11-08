@@ -128,7 +128,7 @@ function Register() {
         type: "user",
       })
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         navigate("/");
         alert("Registration Done");
       })
@@ -188,9 +188,9 @@ function Register() {
               <div className="select-box">
                 <select value={college} onChange={handleCollegeChange}>
                   <option hidden>Select</option>
-                  <option>ACET</option>
-                  <option>ACOE</option>
-                  <option>AEC</option>
+                  <option value="ACET">ACET</option>
+                  <option value="ACOE">ACOE</option>
+                  <option value="AEC">AEC</option>
                 </select>
               </div>
             </div>
@@ -200,12 +200,12 @@ function Register() {
               <div className="select-box">
                 <select value={branch} onChange={handleBranchChange}>
                   <option hidden>Select</option>
-                  <option>IT</option>
-                  <option>CSE</option>
-                  <option>EEE</option>
-                  <option>ECE</option>
-                  <option>MECH</option>
-                  <option>Civil</option>
+                  <option value="IT">IT</option>
+                  <option value="CSE">CSE</option>
+                  <option value="EEE">EEE</option>
+                  <option value="ECE">ECE</option>
+                  <option value="Mech">MECH</option>
+                  <option value="Civil">Civil</option>
                 </select>
               </div>
             </div>

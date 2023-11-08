@@ -25,7 +25,7 @@ function UpdateWorker() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/getWorker/${id}`)
+      .get(`http://localhost:5000/updateWorker/${id}`)
       .then((result) => {
         console.log(result);
         setType(result.data.type);

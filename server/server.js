@@ -87,34 +87,34 @@ app.put("/adduser", (req, res) => {
 });
 
 app.post("/register", (req, res) => {
-  const { email } = req.body;
-  cmsModel.findOne({ email }).then((user) => {
-    // const newUser = new user({
-    //   email,
-    //   password,
-    //   verified: false
-    // });
-    // newUser.save()
-    // .then((result) =>{
-    //   sendOTPVerificationMail(result, res)
-    // })
+  // const { email } = req.body;
+  // cmsModel.findOne({ email }).then((user) => {
+  // const newUser = new user({
+  //   email,
+  //   password,
+  //   verified: false
+  // });
+  // newUser.save()
+  // .then((result) =>{
+  //   sendOTPVerificationMail(result, res)
+  // })
 
-    // if (user) {
-    //   cmsModel
-    //     .findOneAndUpdate({ email }, req.body, { new: true })
-    //     .then((updateuser) => {
-    //       res.json(updateuser);
-    //     })
-    //     .catch((err) => {
-    //       res.status(500).json({ error: "Error Updating Existing Record" });
-    //     });
-    // } else {
-    cmsModel
-      .create(req.body)
-      .then((cms) => res.json(cms))
-      .catch((err) => res.json(err));
-    // }
-  });
+  // if (user) {
+  //   cmsModel
+  //     .findOneAndUpdate({ email }, req.body, { new: true })
+  //     .then((updateuser) => {
+  //       res.json(updateuser);
+  //     })
+  //     .catch((err) => {
+  //       res.status(500).json({ error: "Error Updating Existing Record" });
+  //     });
+  // } else {
+  cmsModel
+    .create(req.body)
+    .then((cms) => res.json(cms))
+    .catch((err) => res.json(err));
+  // }
+  // });
 });
 
 app.post("/registercom", (req, res) => {
@@ -200,8 +200,8 @@ app.put("/updateCom/:id", async (req, res) => {
     floor,
     room,
     comdes,
-    status, // Include status in the request
-    worker, // Include worker in the request
+    status, 
+    worker, 
   } = req.body;
 
   try {
@@ -218,10 +218,10 @@ app.put("/updateCom/:id", async (req, res) => {
         floor,
         room,
         comdes,
-        status, // Update status
-        worker, // Update worker
+        status, 
+        worker, 
       },
-      { new: true } // Return the updated complaint
+      { new: true } 
     );
 
     if (!updatedComplaint) {
@@ -246,22 +246,22 @@ app.put("/updateWorker/:id", async (req, res) => {
 
   try {
     // Update the complaint based on the provided fields
-    const updatedComplaint = await workerModel.findByIdAndUpdate(
+    const updatedWorker = await workerModel.findByIdAndUpdate(
       id,
       {
         email,
         name,
         phone,
-        type, // Update worker
+        type, 
       },
-      { new: true } // Return the updated complaint
+      { new: true } 
     );
 
-    if (!updatedComplaint) {
-      return res.status(404).json({ message: "Complaint not found" });
+    if (!updatedWorker) {
+      return res.status(404).json({ message: "Worker not found" });
     }
 
-    res.status(200).json(updatedComplaint);
+    res.status(200).json(updatedWorker);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal server error" });
@@ -270,11 +270,20 @@ app.put("/updateWorker/:id", async (req, res) => {
 
 app.put("/updateUser/:id", async (req, res) => {
   const id = req.params.id;
-  const { email, phone, fullname, rollnumber, gender, branch, password, type } =
-    req.body;
+  const {
+    email,
+    phone,
+    fullname,
+    rollnumber,
+    gender,
+    branch,
+    password,
+    type,
+    college,
+  } = req.body;
 
   try {
-    const updatedComplaint = await workerModel.findByIdAndUpdate(
+    const updatedUser = await cmsModel.findByIdAndUpdate(
       id,
       {
         email,
@@ -284,16 +293,17 @@ app.put("/updateUser/:id", async (req, res) => {
         gender,
         branch,
         password,
+        college,
         type,
       },
       { new: true }
     );
 
-    if (!updatedComplaint) {
-      return res.status(404).json({ message: "Complaint not found" });
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
     }
 
-    res.status(200).json(updatedComplaint);
+    res.status(200).json(updatedUser);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal server error" });
